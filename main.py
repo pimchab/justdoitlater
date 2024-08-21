@@ -30,8 +30,9 @@ accuracy_score(y_test, y_pred)
         
 st.sidebar.title('Classifier Selection')
 classifier = st.sidebar.selectbox('Select Classifier', ('KNN', 'SVM', 'Decision Tree', 'Random Forest', 'Neural Network'))
+k = st.sidebar.slider('K Value', 1, 20, 1)
 if classifier == 'KNN':
-  knn = KNeighborsClassifier(n_neighbors=3)
+  knn = KNeighborsClassifier(n_neighbors=k)
   knn.fit(x_train, y_train)
   y_pred = knn.predict(x_test)
   acc = accuracy_score(y_test, y_pred)
