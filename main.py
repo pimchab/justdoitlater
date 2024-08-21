@@ -42,7 +42,7 @@ if classifier == 'SVM':
   y_pred = svm.predict(x_test)
   acc = accuracy_score(y_test, y_pred)
   st.write(acc)
-if classifier == 'Decition Tree':
+if classifier == 'Decision Tree':
   dt = DecisionTreeClassifier()
   dt.fit(x_train, y_train)
   y_pred = dt.predict(x_test)
