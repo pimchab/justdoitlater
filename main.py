@@ -11,26 +11,27 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 
-# download dataset
+# download dataset and define name as iris
 iris = sns.load_dataset('iris')
 
-# define variable name
+# call out iris
 iris
 
 #define x-axis and y-axis
 x = iris.iloc[:, :-1]
 y = iris['species']
 
-# separate training
+# separate training parameters
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(x_train, y_train)
-y_pred = knn.predict(x_test)
-accuracy_score(y_test, y_pred)
-        
+
+# create side bar for select the category to see the accuracy
 st.sidebar.title('Classifier Selection')
 classifier = st.sidebar.selectbox('Select Classifier', ('KNN', 'SVM', 'Decision Tree', 'Random Forest', 'Neural Network'))
+
+# giving the k-value as a slide bar
 k = st.sidebar.slider('K Value', 1, 20, 1)
+
+# check condition if select the side bar to calculate the accuracy
 if classifier == 'KNN':
   knn = KNeighborsClassifier(n_neighbors=k)
   knn.fit(x_train, y_train)
